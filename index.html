@@ -18,7 +18,7 @@
             min-height: 100vh;
         }
 
-        /* Загрузка */
+        /* Загрузка с анимацией */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -30,13 +30,19 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .loader {
             width: 40px;
             height: 40px;
             border: 2px solid rgba(255,255,255,0.1);
-            border-top-color: #7c3aed;
+            border-top-color: #3b82f6;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -52,6 +58,18 @@
             justify-content: center;
             align-items: center;
             padding: 16px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .auth-container {
@@ -61,16 +79,24 @@
             width: 100%;
             max-width: 400px;
             border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
         .logo {
             text-align: center;
             font-size: 36px;
             font-weight: 700;
-            background: linear-gradient(135deg, #fff, #a78bfa);
+            background: linear-gradient(135deg, #fff, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
         }
 
         .subtitle {
@@ -99,12 +125,17 @@
             cursor: pointer;
             font-size: 15px;
             font-weight: 500;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.05);
         }
 
         .tab-btn.active {
-            background: #7c3aed;
+            background: #3b82f6;
             color: white;
+            transform: scale(1.02);
         }
 
         .input-field {
@@ -117,16 +148,19 @@
             color: white;
             font-size: 15px;
             outline: none;
+            transition: all 0.3s ease;
         }
 
         .input-field:focus {
-            border-color: #7c3aed;
+            border-color: #3b82f6;
+            background: rgba(59,130,246,0.1);
+            transform: translateY(-2px);
         }
 
         .btn-primary {
             width: 100%;
             padding: 14px;
-            background: #7c3aed;
+            background: #3b82f6;
             border: none;
             border-radius: 16px;
             color: white;
@@ -134,16 +168,17 @@
             font-weight: 500;
             cursor: pointer;
             margin: 8px 0;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background: #8b5cf6;
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59,130,246,0.3);
         }
 
-        .btn-primary:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .btn-primary:active {
+            transform: translateY(0);
         }
 
         .tg-link {
@@ -155,14 +190,27 @@
             border-radius: 40px;
             font-size: 14px;
             margin: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .tg-link:hover {
+            background: #0099dd;
+            transform: scale(1.05);
         }
 
         .error-message {
-            color: #f87171;
+            color: #ef4444;
             text-align: center;
             margin-top: 16px;
             font-size: 14px;
             min-height: 20px;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
 
         /* Главный экран */
@@ -171,6 +219,7 @@
             padding: 20px;
             position: relative;
             display: none;
+            animation: fadeIn 0.5s ease;
         }
 
         .top-bar {
@@ -184,6 +233,18 @@
             position: sticky;
             top: 20px;
             z-index: 10;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .nav-btn {
@@ -195,15 +256,43 @@
             font-size: 14px;
             font-weight: 500;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .nav-btn:hover {
             background: rgba(255,255,255,0.05);
             color: white;
+            transform: scale(1.05);
         }
 
         .nav-btn.admin {
             color: #fbbf24;
+        }
+
+        .balance-corner {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            background: #121218;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 40px;
+            font-size: 18px;
+            color: #60a5fa;
+            z-index: 20;
+            animation: slideLeft 0.5s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .center-buttons {
@@ -230,26 +319,24 @@
             font-size: 24px;
             font-weight: 600;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
         }
 
         .big-btn:hover {
-            background: #7c3aed;
-            transform: scale(1.05);
+            background: #3b82f6;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 20px 30px rgba(59,130,246,0.3);
         }
 
-        .balance-bar {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 12px 30px;
-            background: #121218;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 40px;
-            font-size: 18px;
-            color: #a78bfa;
-        }
+        .big-btn:nth-child(2) { animation-delay: 0.2s; }
+        .big-btn:nth-child(3) { animation-delay: 0.4s; }
 
         /* Модальные окна */
         .modal {
@@ -259,11 +346,24 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
             padding: 16px;
+            animation: modalFade 0.3s ease;
+        }
+
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                backdrop-filter: blur(0);
+            }
+            to {
+                opacity: 1;
+                backdrop-filter: blur(8px);
+            }
         }
 
         .modal-content {
@@ -274,6 +374,18 @@
             max-width: 480px;
             max-height: 85vh;
             overflow-y: auto;
+            animation: modalSlide 0.3s ease;
+        }
+
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .modal-header {
@@ -289,7 +401,7 @@
 
         .modal-header h2 {
             font-size: 24px;
-            background: linear-gradient(135deg, #fff, #c4b5fd);
+            background: linear-gradient(135deg, #fff, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -303,6 +415,13 @@
             color: #a0a0a0;
             font-size: 20px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            transform: rotate(90deg);
         }
 
         .modal-body {
@@ -312,6 +431,26 @@
         /* Профиль */
         .profile-field {
             margin-bottom: 20px;
+            animation: slideRight 0.3s ease;
+            animation-fill-mode: both;
+        }
+
+        .profile-field:nth-child(1) { animation-delay: 0.1s; }
+        .profile-field:nth-child(2) { animation-delay: 0.2s; }
+        .profile-field:nth-child(3) { animation-delay: 0.3s; }
+        .profile-field:nth-child(4) { animation-delay: 0.4s; }
+        .profile-field:nth-child(5) { animation-delay: 0.5s; }
+        .profile-field:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .profile-field label {
@@ -327,11 +466,22 @@
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.05);
             word-break: break-word;
+            transition: all 0.3s ease;
+        }
+
+        .profile-field .value:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: #3b82f6;
         }
 
         .hidden-text {
             filter: blur(4px);
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hidden-text:hover {
+            filter: blur(2px);
         }
 
         .small-btn {
@@ -342,6 +492,12 @@
             color: white;
             cursor: pointer;
             margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .small-btn:hover {
+            background: #3b82f6;
+            transform: scale(1.05);
         }
 
         /* Вывод */
@@ -362,14 +518,22 @@
             color: #a0a0a0;
             cursor: pointer;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .requisite-option:hover {
+            background: rgba(59,130,246,0.1);
+            border-color: #3b82f6;
+            transform: scale(1.05);
         }
 
         .requisite-option.active {
-            background: #7c3aed;
+            background: #3b82f6;
             color: white;
+            border-color: #3b82f6;
         }
 
-        /* История */
+        /* История с кешем */
         .history-list {
             display: flex;
             flex-direction: column;
@@ -383,6 +547,14 @@
             background: rgba(255,255,255,0.02);
             border: 1px solid rgba(255,255,255,0.05);
             border-radius: 24px;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: rgba(255,255,255,0.04);
+            transform: translateX(5px);
+            border-color: #3b82f6;
         }
 
         .history-amount.positive {
@@ -390,7 +562,7 @@
         }
 
         .history-amount.negative {
-            color: #f87171;
+            color: #ef4444;
         }
 
         /* Wordle */
@@ -418,22 +590,39 @@
             font-size: 24px;
             font-weight: 600;
             text-transform: uppercase;
+            transition: all 0.2s ease;
+            animation: popIn 0.2s ease;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .wordle-cell.filled {
-            background: #7c3aed;
+            background: #3b82f6;
+            border-color: #3b82f6;
         }
 
         .wordle-cell.correct {
-            background: #22c55e;
+            background: #4ade80;
+            border-color: #4ade80;
         }
 
         .wordle-cell.present {
-            background: #eab308;
+            background: #fbbf24;
+            border-color: #fbbf24;
         }
 
         .wordle-cell.absent {
             background: #4b5563;
+            border-color: #4b5563;
         }
 
         .wordle-keyboard {
@@ -451,38 +640,54 @@
             color: white;
             font-size: 16px;
             cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .wordle-key:hover {
+            background: #3b82f6;
+            transform: scale(1.05);
         }
 
         .wordle-key:active {
-            background: #7c3aed;
+            transform: scale(0.95);
         }
 
         .wordle-info {
             text-align: center;
-            color: #a78bfa;
+            color: #60a5fa;
             margin-top: 16px;
+            font-size: 14px;
         }
 
         /* Чеки */
         .upload-area {
-            border: 2px dashed rgba(124,58,237,0.3);
+            border: 2px dashed rgba(59,130,246,0.3);
             border-radius: 30px;
             padding: 40px 20px;
             text-align: center;
-            background: rgba(124,58,237,0.03);
+            background: rgba(59,130,246,0.03);
             cursor: pointer;
             margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: #3b82f6;
+            background: rgba(59,130,246,0.05);
+            transform: scale(1.02);
         }
 
         #receiptPreview {
             margin: 20px 0;
             text-align: center;
+            animation: fadeIn 0.3s ease;
         }
 
         #previewImage {
             max-width: 100%;
             max-height: 200px;
             border-radius: 24px;
+            border: 2px solid #3b82f6;
         }
 
         /* Ссылки */
@@ -504,11 +709,24 @@
             padding: 16px;
             border-radius: 24px;
             text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(59,130,246,0.1);
+            transform: translateY(-5px);
         }
 
         .stat-card .value {
             font-size: 28px;
-            color: #a78bfa;
+            color: #60a5fa;
+            font-weight: 700;
+        }
+
+        .stat-card .label {
+            color: #a0a0a0;
+            font-size: 13px;
+            margin-top: 4px;
         }
 
         /* Админ */
@@ -526,11 +744,18 @@
             border-radius: 30px;
             color: #a0a0a0;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .admin-tab:hover {
+            background: rgba(59,130,246,0.1);
+            color: white;
         }
 
         .admin-tab.active {
-            background: #7c3aed;
+            background: #3b82f6;
             color: white;
+            border-color: #3b82f6;
         }
 
         .admin-item {
@@ -539,6 +764,14 @@
             border-radius: 24px;
             padding: 16px;
             margin-bottom: 12px;
+            transition: all 0.3s ease;
+            animation: slideUp 0.3s ease;
+        }
+
+        .admin-item:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: #3b82f6;
+            transform: translateX(5px);
         }
 
         .admin-btn {
@@ -548,16 +781,29 @@
             font-size: 13px;
             cursor: pointer;
             margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .admin-btn:hover {
+            transform: scale(1.05);
         }
 
         .admin-btn.approve {
-            background: rgba(34,197,94,0.2);
+            background: rgba(74,222,128,0.2);
             color: #4ade80;
+        }
+
+        .admin-btn.approve:hover {
+            background: rgba(74,222,128,0.3);
         }
 
         .admin-btn.reject {
             background: rgba(239,68,68,0.2);
-            color: #f87171;
+            color: #ef4444;
+        }
+
+        .admin-btn.reject:hover {
+            background: rgba(239,68,68,0.3);
         }
 
         .admin-btn.fine {
@@ -565,12 +811,27 @@
             color: #fbbf24;
         }
 
+        .admin-btn.fine:hover {
+            background: rgba(251,191,36,0.3);
+        }
+
         /* Адаптация */
         @media (max-width: 768px) {
+            .balance-corner {
+                position: static;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            
+            .top-bar {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             .center-buttons {
                 position: static;
                 transform: none;
-                margin-top: 100px;
+                margin-top: 40px;
                 flex-direction: column;
                 align-items: center;
             }
@@ -632,6 +893,10 @@
 
         <!-- Главный экран -->
         <div class="main-screen" id="mainScreen">
+            <div class="balance-corner" id="balanceCorner">
+                Баланс: <span id="userBalance">0.00</span> ₽
+            </div>
+
             <div class="top-bar">
                 <button class="nav-btn" id="profileBtn">👤 Профиль</button>
                 <button class="nav-btn" id="withdrawBtn">💰 Вывод</button>
@@ -644,10 +909,6 @@
                 <button class="big-btn" id="wordleBtn">WORDLE</button>
                 <button class="big-btn" id="receiptBtn">ЧЕК</button>
                 <button class="big-btn" id="linksBtn">ССЫЛКИ</button>
-            </div>
-
-            <div class="balance-bar">
-                Баланс: <span id="userBalance">0.00</span> ₽
             </div>
         </div>
 
@@ -673,14 +934,17 @@
                     <div class="profile-field">
                         <label>Телефон</label>
                         <div class="value" id="profilePhone">—</div>
+                        <button class="small-btn" onclick="editRequisite('phone')">✏️ Изменить</button>
                     </div>
                     <div class="profile-field">
                         <label>Карта</label>
                         <div class="value" id="profileCard">—</div>
+                        <button class="small-btn" onclick="editRequisite('card')">✏️ Изменить</button>
                     </div>
                     <div class="profile-field">
                         <label>Steam</label>
                         <div class="value" id="profileSteam">—</div>
+                        <button class="small-btn" onclick="editRequisite('steam')">✏️ Изменить</button>
                     </div>
                     <div class="profile-field">
                         <label>Стрик</label>
@@ -803,7 +1067,14 @@
                     </div>
                     
                     <p style="color: #a0a0a0; font-size: 13px; margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 16px;">
-                        💡 Распространяйте ссылку везде! В комментариях TT, говорите что там слив.
+                        🔥 <strong>Как заработать больше?</strong><br><br>
+                        Распространяй эту ссылку везде!<br>
+                        • В комментариях TikTok<br>
+                        • В Telegram каналах<br>
+                        • На форумах<br><br>
+                        <strong>Главное условие:</strong> люди должны подписаться на каналы по твоей ссылке!<br>
+                        Говори что там эксклюзивный контент, сливы, закрытые материалы 🔥<br><br>
+                        Чем больше подписок по твоей ссылке - тем больше переходов и денег!
                     </p>
                 </div>
             </div>
@@ -847,6 +1118,12 @@
             guesses: [],
             currentGuess: '',
             streak: 0
+        };
+        
+        // Кеш для истории
+        let historyCache = {
+            data: [],
+            timestamp: 0
         };
 
         // ======================================
@@ -902,11 +1179,15 @@
             document.getElementById('authScreen').style.display = 'none';
             document.getElementById('mainScreen').style.display = 'none';
 
+            // Загружаем кеш
+            loadCache();
+
             const savedToken = localStorage.getItem('workToken');
             if (savedToken) {
                 const result = await apiRequest('login', { token: savedToken });
                 if (result.success && result.user) {
                     user = result.user;
+                    saveUserToCache();
                     showMainScreen();
                 } else {
                     showAuthScreen();
@@ -916,6 +1197,31 @@
             }
 
             initEventListeners();
+        }
+
+        function loadCache() {
+            try {
+                const cached = localStorage.getItem('workCache');
+                if (cached) {
+                    const data = JSON.parse(cached);
+                    if (data.user) user = data.user;
+                    if (data.history) historyCache = data.history;
+                }
+            } catch (e) {
+                console.error('Cache load error:', e);
+            }
+        }
+
+        function saveUserToCache() {
+            try {
+                const cache = {
+                    user: user,
+                    history: historyCache
+                };
+                localStorage.setItem('workCache', JSON.stringify(cache));
+            } catch (e) {
+                console.error('Cache save error:', e);
+            }
         }
 
         function showAuthScreen() {
@@ -965,6 +1271,7 @@
                 if (result.success && result.user) {
                     user = result.user;
                     localStorage.setItem('workToken', token);
+                    saveUserToCache();
                     showMainScreen();
                 } else {
                     showError('Неверный токен или пользователь не найден');
@@ -1013,6 +1320,7 @@
                     if (loginResult.success && loginResult.user) {
                         user = loginResult.user;
                         localStorage.setItem('workToken', currentToken);
+                        saveUserToCache();
                         showMainScreen();
                     }
                 } else {
@@ -1062,16 +1370,16 @@
             
             dropArea.addEventListener('dragover', (e) => {
                 e.preventDefault();
-                dropArea.style.background = 'rgba(124,58,237,0.1)';
+                dropArea.style.background = 'rgba(59,130,246,0.1)';
             });
             
             dropArea.addEventListener('dragleave', () => {
-                dropArea.style.background = 'rgba(124,58,237,0.03)';
+                dropArea.style.background = 'rgba(59,130,246,0.03)';
             });
             
             dropArea.addEventListener('drop', (e) => {
                 e.preventDefault();
-                dropArea.style.background = 'rgba(124,58,237,0.03)';
+                dropArea.style.background = 'rgba(59,130,246,0.03)';
                 if (e.dataTransfer.files[0]) handleReceiptFile(e.dataTransfer.files[0]);
             });
             
@@ -1090,9 +1398,41 @@
                     
                     document.getElementById('adminWithdraws').style.display = tab.dataset.tab === 'withdraws' ? 'block' : 'none';
                     document.getElementById('adminReceipts').style.display = tab.dataset.tab === 'receipts' ? 'block' : 'none';
+                    
+                    if (tab.dataset.tab === 'receipts') loadAdminReceipts();
                 });
             });
         }
+
+        // ======================================
+        // РЕДАКТИРОВАНИЕ РЕКВИЗИТОВ
+        // ======================================
+        window.editRequisite = async function(type) {
+            if (user.withdraw_pending) {
+                alert('Нельзя изменить реквизиты пока есть активная заявка на вывод');
+                return;
+            }
+
+            const newValue = prompt(`Введите новый ${type === 'phone' ? 'телефон' : type === 'card' ? 'номер карты' : 'логин Steam'}:`);
+            if (!newValue) return;
+
+            const data = {};
+            data[type] = newValue;
+
+            const result = await apiRequest('saveRequisites', {
+                token: user.token,
+                phone: type === 'phone' ? newValue : '',
+                card: type === 'card' ? newValue : '',
+                steam: type === 'steam' ? newValue : ''
+            });
+
+            if (result.success) {
+                user[type] = newValue;
+                saveUserToCache();
+                showProfile();
+                alert('Реквизит обновлен');
+            }
+        };
 
         // ======================================
         // ПРОФИЛЬ
@@ -1102,6 +1442,7 @@
             
             const modal = document.getElementById('profileModal');
             
+            // Показываем из кеша
             document.getElementById('profileName').textContent = user.name || '—';
             document.getElementById('profilePhone').textContent = user.phone || '—';
             document.getElementById('profileCard').textContent = user.card || '—';
@@ -1110,6 +1451,20 @@
             
             modal.style.display = 'flex';
             activeModal = modal;
+
+            // Обновляем в фоне
+            const result = await apiRequest('getUserData', { token: user.token });
+            if (result.success && result.user) {
+                user = result.user;
+                saveUserToCache();
+                
+                document.getElementById('profileName').textContent = user.name || '—';
+                document.getElementById('profilePhone').textContent = user.phone || '—';
+                document.getElementById('profileCard').textContent = user.card || '—';
+                document.getElementById('profileSteam').textContent = user.steam || '—';
+                document.getElementById('profileStreak').textContent = (user.streak || 0) + ' дней';
+                document.getElementById('userBalance').textContent = user.balance.toFixed(2);
+            }
         }
 
         // ======================================
@@ -1161,6 +1516,7 @@
                 const userResult = await apiRequest('getUserData', { token: user.token });
                 if (userResult.success) {
                     user = userResult.user;
+                    saveUserToCache();
                     document.getElementById('userBalance').textContent = user.balance.toFixed(2);
                 }
             } else {
@@ -1169,7 +1525,7 @@
         }
 
         // ======================================
-        // ИСТОРИЯ
+        // ИСТОРИЯ С КЕШЕМ
         // ======================================
         async function showHistory() {
             if (activeModal) activeModal.style.display = 'none';
@@ -1177,34 +1533,51 @@
             const modal = document.getElementById('historyModal');
             const list = document.getElementById('historyList');
             
-            list.innerHTML = '<div style="text-align: center; color: #a0a0a0; padding: 40px;">Загрузка...</div>';
+            // Показываем кеш
+            if (historyCache.data.length > 0) {
+                renderHistory(historyCache.data);
+            } else {
+                list.innerHTML = '<div style="text-align: center; color: #a0a0a0; padding: 40px;">Загрузка...</div>';
+            }
+            
             modal.style.display = 'flex';
             activeModal = modal;
 
+            // Обновляем в фоне
             const result = await apiRequest('getHistory', { token: user.token });
             if (result.success && result.history) {
-                list.innerHTML = '';
-                
-                if (result.history.length === 0) {
-                    list.innerHTML = '<div style="text-align: center; color: #a0a0a0; padding: 40px;">История пуста</div>';
-                    return;
-                }
-
-                result.history.forEach(item => {
-                    const amountClass = item.amount > 0 ? 'positive' : (item.amount < 0 ? 'negative' : '');
-                    list.innerHTML += `
-                        <div class="history-item">
-                            <div>
-                                <div style="font-weight: 500;">${item.details || item.action}</div>
-                                <div style="color: #a0a0a0; font-size: 12px; margin-top: 4px;">${item.date}</div>
-                            </div>
-                            <div class="history-amount ${amountClass}">
-                                ${item.amount > 0 ? '+' : ''}${item.amount} ₽
-                            </div>
-                        </div>
-                    `;
-                });
+                historyCache = {
+                    data: result.history,
+                    timestamp: Date.now()
+                };
+                saveUserToCache();
+                renderHistory(result.history);
             }
+        }
+
+        function renderHistory(history) {
+            const list = document.getElementById('historyList');
+            list.innerHTML = '';
+            
+            if (history.length === 0) {
+                list.innerHTML = '<div style="text-align: center; color: #a0a0a0; padding: 40px;">История пуста</div>';
+                return;
+            }
+
+            history.forEach(item => {
+                const amountClass = item.amount > 0 ? 'positive' : (item.amount < 0 ? 'negative' : '');
+                list.innerHTML += `
+                    <div class="history-item">
+                        <div>
+                            <div style="font-weight: 500;">${item.details || item.action}</div>
+                            <div style="color: #a0a0a0; font-size: 12px; margin-top: 4px;">${item.date}</div>
+                        </div>
+                        <div class="history-amount ${amountClass}">
+                            ${item.amount > 0 ? '+' : ''}${item.amount} ₽
+                        </div>
+                    </div>
+                `;
+            });
         }
 
         // ======================================
@@ -1217,7 +1590,20 @@
             modal.style.display = 'flex';
             activeModal = modal;
 
-            const result = await apiRequest('getWords', { token: user.token });
+            // Проверяем сохраненную игру
+            const saved = localStorage.getItem(`wordle_${user.token}`);
+            if (saved) {
+                const game = JSON.parse(saved);
+                const today = new Date().toDateString();
+                if (game.date === today) {
+                    wordleGame = game;
+                    renderWordle();
+                    document.getElementById('wordleInfo').innerHTML = `Стрик: ${game.streak} дней • Продолжайте игру`;
+                    return;
+                }
+            }
+
+            const result = await apiRequest('getWordle', { token: user.token });
             
             if (result.success) {
                 if (result.canPlay) {
@@ -1225,7 +1611,8 @@
                         word: result.word,
                         guesses: [],
                         currentGuess: '',
-                        streak: result.streak
+                        streak: result.streak,
+                        date: new Date().toDateString()
                     };
                     
                     document.getElementById('wordleInfo').innerHTML = `Стрик: ${result.streak} дней`;
@@ -1253,7 +1640,10 @@
                 gridHTML += '<div class="wordle-row">';
                 for (let j = 0; j < 5; j++) {
                     const letter = wordleGame.guesses[i]?.[j] || '';
-                    gridHTML += `<div class="wordle-cell ${letter ? 'filled' : ''}">${letter}</div>`;
+                    const currentRow = i === wordleGame.guesses.length;
+                    const currentLetter = currentRow ? wordleGame.currentGuess[j] || '' : '';
+                    const displayLetter = currentRow ? currentLetter : letter;
+                    gridHTML += `<div class="wordle-cell ${displayLetter ? 'filled' : ''}">${displayLetter}</div>`;
                 }
                 gridHTML += '</div>';
             }
@@ -1276,6 +1666,9 @@
             });
             
             keyboardDiv.innerHTML = keyboardHTML;
+            
+            // Сохраняем игру
+            localStorage.setItem(`wordle_${user.token}`, JSON.stringify(wordleGame));
         }
 
         window.handleWordleKey = async (key) => {
@@ -1285,14 +1678,14 @@
                     return;
                 }
                 
+                wordleGame.guesses.push(wordleGame.currentGuess);
+                
                 const result = await apiRequest('submitWordle', {
                     token: user.token,
-                    word: wordleGame.currentGuess,
-                    attempts: wordleGame.guesses.length + 1
+                    guesses: JSON.stringify(wordleGame.guesses)
                 });
                 
                 if (result.success) {
-                    wordleGame.guesses.push(wordleGame.currentGuess);
                     wordleGame.currentGuess = '';
                     
                     if (result.isWin) {
@@ -1302,17 +1695,26 @@
                         const userResult = await apiRequest('getUserData', { token: user.token });
                         if (userResult.success) {
                             user = userResult.user;
+                            saveUserToCache();
                             document.getElementById('userBalance').textContent = user.balance.toFixed(2);
                         }
+                        
+                        localStorage.removeItem(`wordle_${user.token}`);
+                    } else if (wordleGame.guesses.length >= 6) {
+                        alert(`Поражение! Слово было: ${wordleGame.word}`);
+                        document.getElementById('wordleModal').style.display = 'none';
+                        localStorage.removeItem(`wordle_${user.token}`);
                     }
                     
                     renderWordle();
                 }
             } else if (key === '←') {
                 wordleGame.currentGuess = wordleGame.currentGuess.slice(0, -1);
+                renderWordle();
             } else {
                 if (wordleGame.currentGuess.length < 5) {
                     wordleGame.currentGuess += key;
+                    renderWordle();
                 }
             }
         };
@@ -1379,7 +1781,9 @@
             if (activeModal) activeModal.style.display = 'none';
             
             const modal = document.getElementById('linksModal');
-            document.getElementById('userLink').value = `https://work-btheb.ru/r/${user.token}`;
+            
+            // Берем ссылку из данных пользователя (из таблицы)
+            document.getElementById('userLink').value = user.referral_link || `https://work-btheb.ru/r/${user.token}`;
             document.getElementById('linkClicks').textContent = user.clicks || 0;
             document.getElementById('linkEarned').textContent = (user.referral_earned || 0).toFixed(2);
             
@@ -1398,7 +1802,10 @@
             modal.style.display = 'flex';
             activeModal = modal;
 
-            // Загружаем выводы
+            await loadAdminWithdraws();
+        }
+
+        async function loadAdminWithdraws() {
             const result = await apiRequest('adminGetPending', { token: user.token });
             if (result.success && result.withdraws) {
                 const div = document.getElementById('adminWithdraws');
@@ -1413,7 +1820,7 @@
                     div.innerHTML += `
                         <div class="admin-item">
                             <div style="margin-bottom: 10px;">
-                                <span style="color: #a78bfa;">#${w.id}</span>
+                                <span style="color: #60a5fa;">#${w.id}</span>
                                 <span style="float: right; background: rgba(251,191,36,0.1); padding: 4px 12px; border-radius: 30px; font-size: 12px;">${w.status}</span>
                             </div>
                             <div style="margin-bottom: 15px;">
@@ -1432,11 +1839,45 @@
             }
         }
 
+        async function loadAdminReceipts() {
+            const result = await apiRequest('adminGetReceipts', { token: user.token });
+            if (result.success && result.receipts) {
+                const div = document.getElementById('adminReceipts');
+                div.innerHTML = '';
+                
+                if (result.receipts.length === 0) {
+                    div.innerHTML = '<div style="text-align: center; color: #a0a0a0; padding: 20px;">Нет чеков</div>';
+                    return;
+                }
+
+                result.receipts.forEach(r => {
+                    div.innerHTML += `
+                        <div class="admin-item">
+                            <div style="margin-bottom: 10px;">
+                                <span style="color: #60a5fa;">#${r.id}</span>
+                            </div>
+                            <div style="margin-bottom: 15px;">
+                                <p>👤 ${r.token}</p>
+                                <p>🏪 ${r.store}</p>
+                                <p>📅 ${r.receiptDate}</p>
+                                <p>⏰ ${r.uploadDate}</p>
+                            </div>
+                            <div style="display: flex; gap: 8px;">
+                                <button class="admin-btn approve" onclick="approveReceipt('${r.id}')">✅ Одобрить</button>
+                                <button class="admin-btn reject" onclick="rejectReceipt('${r.id}')">❌ Отклонить</button>
+                                <button class="admin-btn fine" onclick="fineReceipt('${r.id}')">⚠️ Штраф</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+
         window.approveWithdraw = async (id) => {
             const result = await apiRequest('adminApproveWithdraw', { token: user.token, withdrawId: id });
             if (result.success) {
                 alert('Вывод одобрен');
-                showAdmin();
+                loadAdminWithdraws();
             }
         };
 
@@ -1446,7 +1887,36 @@
             const result = await apiRequest('adminRejectWithdraw', { token: user.token, withdrawId: id, reason });
             if (result.success) {
                 alert('Вывод отклонен');
-                showAdmin();
+                loadAdminWithdraws();
+            }
+        };
+
+        window.approveReceipt = async (id) => {
+            const amount = prompt('Сумма начисления (по умолчанию 0.75):', '0.75');
+            if (!amount) return;
+            const result = await apiRequest('adminApproveReceipt', { token: user.token, receiptId: id, amount: parseFloat(amount) });
+            if (result.success) {
+                alert('Чек одобрен');
+                loadAdminReceipts();
+            }
+        };
+
+        window.rejectReceipt = async (id) => {
+            const reason = prompt('Причина отклонения (не видно QR, старый чек, не тот магазин):');
+            if (!reason) return;
+            const result = await apiRequest('adminRejectReceipt', { token: user.token, receiptId: id, reason });
+            if (result.success) {
+                alert('Чек отклонен');
+                loadAdminReceipts();
+            }
+        };
+
+        window.fineReceipt = async (id) => {
+            if (!confirm('Вы уверены что это повторный чек? Штраф 0.15 ₽')) return;
+            const result = await apiRequest('adminFineReceipt', { token: user.token, receiptId: id });
+            if (result.success) {
+                alert('Штраф применен');
+                loadAdminReceipts();
             }
         };
 
