@@ -393,6 +393,76 @@
             color: #f87171;
         }
 
+        /* Wordle */
+        .wordle-grid {
+            display: grid;
+            grid-template-rows: repeat(6, 1fr);
+            gap: 6px;
+            margin: 24px 0;
+        }
+
+        .wordle-row {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+
+        .wordle-cell {
+            aspect-ratio: 1;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .wordle-cell.filled {
+            background: #7c3aed;
+        }
+
+        .wordle-cell.correct {
+            background: #22c55e;
+        }
+
+        .wordle-cell.present {
+            background: #eab308;
+        }
+
+        .wordle-cell.absent {
+            background: #4b5563;
+        }
+
+        .wordle-keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 4px;
+            margin-top: 20px;
+        }
+
+        .wordle-key {
+            aspect-ratio: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .wordle-key:active {
+            background: #7c3aed;
+        }
+
+        .wordle-info {
+            text-align: center;
+            color: #a78bfa;
+            margin-top: 16px;
+        }
+
         /* Чеки */
         .upload-area {
             border: 2px dashed rgba(124,58,237,0.3);
@@ -413,6 +483,32 @@
             max-width: 100%;
             max-height: 200px;
             border-radius: 24px;
+        }
+
+        /* Ссылки */
+        .link-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.03);
+            padding: 16px;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .stat-card .value {
+            font-size: 28px;
+            color: #a78bfa;
         }
 
         /* Админ */
@@ -634,21 +730,17 @@
             </div>
         </div>
 
-        <!-- Модалка Админ -->
-        <div class="modal" id="adminModal">
+        <!-- Модалка Wordle -->
+        <div class="modal" id="wordleModal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2>Админ панель</h2>
-                    <button class="close-btn" onclick="closeModal('adminModal')">×</button>
+                    <h2>WORDLE</h2>
+                    <button class="close-btn" onclick="closeModal('wordleModal')">×</button>
                 </div>
                 <div class="modal-body">
-                    <div class="admin-tabs">
-                        <button class="admin-tab active" data-tab="withdraws">💰 Выводы</button>
-                        <button class="admin-tab" data-tab="receipts">🧾 Чеки</button>
-                    </div>
-                    
-                    <div id="adminWithdraws"></div>
-                    <div id="adminReceipts" style="display: none;"></div>
+                    <div id="wordleGame"></div>
+                    <div class="wordle-keyboard" id="wordleKeyboard"></div>
+                    <div class="wordle-info" id="wordleInfo"></div>
                 </div>
             </div>
         </div>
@@ -694,25 +786,44 @@
                     <button class="close-btn" onclick="closeModal('linksModal')">×</button>
                 </div>
                 <div class="modal-body">
-                    <div style="display: flex; gap: 8px; margin-bottom: 20px;">
+                    <div class="link-container">
                         <input type="text" class="input-field" id="userLink" readonly style="flex:1;">
                         <button class="btn-primary" id="copyLink" style="width: auto; padding: 14px 20px;">📋</button>
                     </div>
                     
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
-                        <div style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 24px; text-align: center;">
-                            <div style="font-size: 28px; color: #a78bfa;" id="linkClicks">0</div>
-                            <div style="color: #a0a0a0; font-size: 13px;">Переходов</div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="value" id="linkClicks">0</div>
+                            <div class="label">Переходов</div>
                         </div>
-                        <div style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 24px; text-align: center;">
-                            <div style="font-size: 28px; color: #a78bfa;" id="linkEarned">0.00</div>
-                            <div style="color: #a0a0a0; font-size: 13px;">Заработано</div>
+                        <div class="stat-card">
+                            <div class="value" id="linkEarned">0.00</div>
+                            <div class="label">Заработано</div>
                         </div>
                     </div>
                     
                     <p style="color: #a0a0a0; font-size: 13px; margin-top: 20px; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 16px;">
                         💡 Распространяйте ссылку везде! В комментариях TT, говорите что там слив.
                     </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модалка Админ -->
+        <div class="modal" id="adminModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Админ панель</h2>
+                    <button class="close-btn" onclick="closeModal('adminModal')">×</button>
+                </div>
+                <div class="modal-body">
+                    <div class="admin-tabs">
+                        <button class="admin-tab active" data-tab="withdraws">💰 Выводы</button>
+                        <button class="admin-tab" data-tab="receipts">🧾 Чеки</button>
+                    </div>
+                    
+                    <div id="adminWithdraws"></div>
+                    <div id="adminReceipts" style="display: none;"></div>
                 </div>
             </div>
         </div>
@@ -723,7 +834,6 @@
         // НАСТРОЙКИ
         // ======================================
         const API_URL = 'https://script.google.com/macros/s/AKfycbxRMcBowZJ0-thf2L_VWuAodFC1RZXdgjyrGv47Jt4_lxcMOkf72sVfE8o74lEWbtQK3A/exec';
-        const TG_BOT = '@WorkBtheB_bot';
         const ADS_LINK = 'https://bthebfr.github.io/about/';
 
         // ======================================
@@ -732,6 +842,12 @@
         let user = null;
         let currentToken = null;
         let activeModal = null;
+        let wordleGame = {
+            word: '',
+            guesses: [],
+            currentGuess: '',
+            streak: 0
+        };
 
         // ======================================
         // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
@@ -743,13 +859,13 @@
             }, 3000);
         }
 
-        function closeModal(modalId) {
+        window.closeModal = function(modalId) {
             document.getElementById(modalId).style.display = 'none';
             activeModal = null;
-        }
+        };
 
         // ======================================
-        // API ЗАПРОСЫ (через fetch)
+        // API ЗАПРОСЫ
         // ======================================
         async function apiRequest(action, data = {}) {
             try {
@@ -782,12 +898,10 @@
         // ИНИЦИАЛИЗАЦИЯ
         // ======================================
         async function init() {
-            // Показываем загрузку
             document.getElementById('loadingScreen').style.display = 'flex';
             document.getElementById('authScreen').style.display = 'none';
             document.getElementById('mainScreen').style.display = 'none';
 
-            // Проверяем сохраненный токен
             const savedToken = localStorage.getItem('workToken');
             if (savedToken) {
                 const result = await apiRequest('login', { token: savedToken });
@@ -801,7 +915,6 @@
                 showAuthScreen();
             }
 
-            // Назначаем обработчики
             initEventListeners();
         }
 
@@ -913,7 +1026,7 @@
             document.getElementById('historyBtn').addEventListener('click', showHistory);
             document.getElementById('adminBtn').addEventListener('click', showAdmin);
             document.getElementById('adsBtn').addEventListener('click', () => window.open(ADS_LINK, '_blank'));
-            document.getElementById('wordleBtn').addEventListener('click', () => alert('Wordle будет добавлен'));
+            document.getElementById('wordleBtn').addEventListener('click', showWordle);
             document.getElementById('receiptBtn').addEventListener('click', showReceipt);
             document.getElementById('linksBtn').addEventListener('click', showLinks);
 
@@ -982,10 +1095,8 @@
         }
 
         // ======================================
-        // ФУНКЦИИ МОДАЛОК
+        // ПРОФИЛЬ
         // ======================================
-
-        // Профиль
         async function showProfile() {
             if (activeModal) activeModal.style.display = 'none';
             
@@ -1001,7 +1112,9 @@
             activeModal = modal;
         }
 
-        // Вывод
+        // ======================================
+        // ВЫВОД
+        // ======================================
         async function showWithdraw() {
             if (activeModal) activeModal.style.display = 'none';
             
@@ -1045,7 +1158,6 @@
                 document.getElementById('withdrawModal').style.display = 'none';
                 activeModal = null;
                 
-                // Обновляем данные
                 const userResult = await apiRequest('getUserData', { token: user.token });
                 if (userResult.success) {
                     user = userResult.user;
@@ -1056,7 +1168,9 @@
             }
         }
 
-        // История
+        // ======================================
+        // ИСТОРИЯ
+        // ======================================
         async function showHistory() {
             if (activeModal) activeModal.style.display = 'none';
             
@@ -1093,7 +1207,189 @@
             }
         }
 
-        // Админ
+        // ======================================
+        // WORDLE
+        // ======================================
+        async function showWordle() {
+            if (activeModal) activeModal.style.display = 'none';
+            
+            const modal = document.getElementById('wordleModal');
+            modal.style.display = 'flex';
+            activeModal = modal;
+
+            const result = await apiRequest('getWords', { token: user.token });
+            
+            if (result.success) {
+                if (result.canPlay) {
+                    wordleGame = {
+                        word: result.word,
+                        guesses: [],
+                        currentGuess: '',
+                        streak: result.streak
+                    };
+                    
+                    document.getElementById('wordleInfo').innerHTML = `Стрик: ${result.streak} дней`;
+                    renderWordle();
+                } else {
+                    document.getElementById('wordleGame').innerHTML = `
+                        <div style="text-align: center; padding: 40px;">
+                            <p>Вы уже играли сегодня</p>
+                            <p>Статус: ${result.status === 'won' ? 'Победа' : 'Поражение'}</p>
+                            <p>Стрик: ${result.streak} дней</p>
+                        </div>
+                    `;
+                    document.getElementById('wordleKeyboard').innerHTML = '';
+                }
+            }
+        }
+
+        function renderWordle() {
+            const gameDiv = document.getElementById('wordleGame');
+            const keyboardDiv = document.getElementById('wordleKeyboard');
+            
+            // Сетка
+            let gridHTML = '<div class="wordle-grid">';
+            for (let i = 0; i < 6; i++) {
+                gridHTML += '<div class="wordle-row">';
+                for (let j = 0; j < 5; j++) {
+                    const letter = wordleGame.guesses[i]?.[j] || '';
+                    gridHTML += `<div class="wordle-cell ${letter ? 'filled' : ''}">${letter}</div>`;
+                }
+                gridHTML += '</div>';
+            }
+            gridHTML += '</div>';
+            
+            gameDiv.innerHTML = gridHTML;
+            
+            // Клавиатура
+            const keys = [
+                ['Й','Ц','У','К','Е','Н','Г','Ш','Щ','З'],
+                ['Ф','Ы','В','А','П','Р','О','Л','Д','Ж'],
+                ['Enter','Я','Ч','С','М','И','Т','Ь','Б','Ю','←']
+            ];
+            
+            let keyboardHTML = '';
+            keys.forEach(row => {
+                row.forEach(key => {
+                    keyboardHTML += `<button class="wordle-key" onclick="handleWordleKey('${key}')">${key}</button>`;
+                });
+            });
+            
+            keyboardDiv.innerHTML = keyboardHTML;
+        }
+
+        window.handleWordleKey = async (key) => {
+            if (key === 'Enter') {
+                if (wordleGame.currentGuess.length !== 5) {
+                    alert('Введите 5 букв');
+                    return;
+                }
+                
+                const result = await apiRequest('submitWordle', {
+                    token: user.token,
+                    word: wordleGame.currentGuess,
+                    attempts: wordleGame.guesses.length + 1
+                });
+                
+                if (result.success) {
+                    wordleGame.guesses.push(wordleGame.currentGuess);
+                    wordleGame.currentGuess = '';
+                    
+                    if (result.isWin) {
+                        alert(`Победа! +${result.reward} ₽`);
+                        document.getElementById('wordleModal').style.display = 'none';
+                        
+                        const userResult = await apiRequest('getUserData', { token: user.token });
+                        if (userResult.success) {
+                            user = userResult.user;
+                            document.getElementById('userBalance').textContent = user.balance.toFixed(2);
+                        }
+                    }
+                    
+                    renderWordle();
+                }
+            } else if (key === '←') {
+                wordleGame.currentGuess = wordleGame.currentGuess.slice(0, -1);
+            } else {
+                if (wordleGame.currentGuess.length < 5) {
+                    wordleGame.currentGuess += key;
+                }
+            }
+        };
+
+        // ======================================
+        // ЧЕКИ
+        // ======================================
+        function showReceipt() {
+            if (activeModal) activeModal.style.display = 'none';
+            
+            const modal = document.getElementById('receiptModal');
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('receiptDate').value = today;
+            
+            modal.style.display = 'flex';
+            activeModal = modal;
+        }
+
+        function handleReceiptFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Пожалуйста, выберите изображение');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('previewImage').src = e.target.result;
+                document.getElementById('receiptPreview').style.display = 'block';
+                document.getElementById('uploadReceiptBtn').disabled = false;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function uploadReceipt() {
+            const store = document.getElementById('receiptStore').value;
+            const date = document.getElementById('receiptDate').value;
+            const photo = document.getElementById('previewImage').src;
+
+            if (!store || !date) {
+                alert('Заполните все поля');
+                return;
+            }
+
+            const result = await apiRequest('uploadReceipt', {
+                token: user.token,
+                store,
+                photo,
+                receiptDate: date
+            });
+
+            if (result.success) {
+                alert('Чек отправлен на проверку!');
+                document.getElementById('receiptModal').style.display = 'none';
+                activeModal = null;
+            } else {
+                alert('Ошибка при загрузке');
+            }
+        }
+
+        // ======================================
+        // ССЫЛКИ
+        // ======================================
+        function showLinks() {
+            if (activeModal) activeModal.style.display = 'none';
+            
+            const modal = document.getElementById('linksModal');
+            document.getElementById('userLink').value = `https://work-btheb.ru/r/${user.token}`;
+            document.getElementById('linkClicks').textContent = user.clicks || 0;
+            document.getElementById('linkEarned').textContent = (user.referral_earned || 0).toFixed(2);
+            
+            modal.style.display = 'flex';
+            activeModal = modal;
+        }
+
+        // ======================================
+        // АДМИН
+        // ======================================
         async function showAdmin() {
             if (!user?.is_admin) return;
             if (activeModal) activeModal.style.display = 'none';
@@ -1153,72 +1449,6 @@
                 showAdmin();
             }
         };
-
-        // Чеки
-        function showReceipt() {
-            if (activeModal) activeModal.style.display = 'none';
-            
-            const modal = document.getElementById('receiptModal');
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('receiptDate').value = today;
-            
-            modal.style.display = 'flex';
-            activeModal = modal;
-        }
-
-        function handleReceiptFile(file) {
-            if (!file.type.startsWith('image/')) {
-                alert('Пожалуйста, выберите изображение');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                document.getElementById('previewImage').src = e.target.result;
-                document.getElementById('receiptPreview').style.display = 'block';
-                document.getElementById('uploadReceiptBtn').disabled = false;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        async function uploadReceipt() {
-            const store = document.getElementById('receiptStore').value;
-            const date = document.getElementById('receiptDate').value;
-            const photo = document.getElementById('previewImage').src;
-
-            if (!store || !date) {
-                alert('Заполните все поля');
-                return;
-            }
-
-            const result = await apiRequest('uploadReceipt', {
-                token: user.token,
-                store,
-                photo,
-                receiptDate: date
-            });
-
-            if (result.success) {
-                alert('Чек отправлен на проверку!');
-                document.getElementById('receiptModal').style.display = 'none';
-                activeModal = null;
-            } else {
-                alert('Ошибка при загрузке');
-            }
-        }
-
-        // Ссылки
-        function showLinks() {
-            if (activeModal) activeModal.style.display = 'none';
-            
-            const modal = document.getElementById('linksModal');
-            document.getElementById('userLink').value = `https://work-btheb.ru/r/${user.token}`;
-            document.getElementById('linkClicks').textContent = user.clicks || 0;
-            document.getElementById('linkEarned').textContent = (user.referral_earned || 0).toFixed(2);
-            
-            modal.style.display = 'flex';
-            activeModal = modal;
-        }
 
         // Запуск
         init();
