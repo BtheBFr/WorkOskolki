@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Стили -->
     <style>
+        /* Все стили из предыдущей версии (темная тема) - оставляем без изменений */
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +26,6 @@
             position: relative;
         }
 
-        /* Фоновый эффект */
         body::before {
             content: '';
             position: fixed;
@@ -40,7 +39,6 @@
             z-index: -1;
         }
 
-        /* Загрузка */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -69,7 +67,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Авторизация */
         .auth-screen {
             min-height: 100vh;
             display: flex;
@@ -137,7 +134,6 @@
             transition: all 0.3s;
         }
 
-        /* Поля ввода */
         .input-field {
             width: 100%;
             padding: 14px 16px;
@@ -160,7 +156,6 @@
             color: rgba(255,255,255,0.3);
         }
 
-        /* Кнопки */
         .btn-primary {
             width: 100%;
             padding: 14px;
@@ -216,7 +211,6 @@
             min-height: 20px;
         }
 
-        /* Основной экран */
         .main-screen {
             min-height: 100vh;
             padding: 20px;
@@ -224,7 +218,6 @@
             display: none;
         }
 
-        /* Верхняя панель */
         .top-bar {
             display: flex;
             justify-content: flex-end;
@@ -265,7 +258,6 @@
             background: rgba(251, 191, 36, 0.1);
         }
 
-        /* Центральные кнопки */
         .center-buttons {
             position: absolute;
             top: 50%;
@@ -303,7 +295,6 @@
             box-shadow: 0 30px 50px -20px #7c3aed;
         }
 
-        /* Баланс */
         .balance-bar {
             position: fixed;
             bottom: 20px;
@@ -321,7 +312,6 @@
             z-index: 5;
         }
 
-        /* Модальные окна */
         .modal {
             position: fixed;
             top: 0;
@@ -415,7 +405,6 @@
             padding: 28px;
         }
 
-        /* Профиль */
         .profile-field {
             margin-bottom: 20px;
         }
@@ -470,7 +459,6 @@
             background: rgba(255,255,255,0.1);
         }
 
-        /* Вывод */
         .requisite-selector {
             display: flex;
             gap: 8px;
@@ -508,7 +496,6 @@
             border-left: 3px solid #fbbf24;
         }
 
-        /* История */
         .history-list {
             display: flex;
             flex-direction: column;
@@ -579,7 +566,6 @@
             background: rgba(248, 113, 113, 0.1);
         }
 
-        /* Wordle */
         .wordle-grid {
             display: grid;
             grid-template-rows: repeat(6, 1fr);
@@ -676,7 +662,6 @@
             margin-top: 16px;
         }
 
-        /* Чеки */
         .upload-area {
             border: 2px dashed rgba(124, 58, 237, 0.3);
             border-radius: 30px;
@@ -715,7 +700,6 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Ссылки */
         .link-container {
             display: flex;
             gap: 8px;
@@ -786,7 +770,6 @@
             border-left: 3px solid #7c3aed;
         }
 
-        /* Админ панель */
         .admin-tabs {
             display: flex;
             gap: 8px;
@@ -839,8 +822,6 @@
             padding: 4px 12px;
             border-radius: 30px;
             font-size: 12px;
-            background: rgba(251, 191, 36, 0.1);
-            color: #fbbf24;
         }
 
         .admin-item-body {
@@ -895,7 +876,6 @@
             border: 1px solid rgba(251, 191, 36, 0.3);
         }
 
-        /* Адаптация */
         @media (max-width: 768px) {
             .top-bar {
                 flex-wrap: wrap;
@@ -1108,7 +1088,7 @@
                         <label style="color: #a0a0a0; font-size: 13px;">Выберите реквизит</label>
                     </div>
                     <div class="requisite-selector" id="requisiteSelector">
-                        <!-- Динамически заполняется из JS -->
+                        <!-- Динамически из JS -->
                     </div>
                     
                     <input type="password" class="input-field" id="withdrawSecret" placeholder="Секретный код">
@@ -1127,7 +1107,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="history-list" id="historyList">
-                        <!-- Динамически заполняется из JS -->
                         <div style="text-align: center; color: #a0a0a0; padding: 40px;">Загрузка...</div>
                     </div>
                 </div>
@@ -1149,25 +1128,10 @@
                         <button class="admin-tab" data-tab="settings">⚙️ Настройки</button>
                     </div>
                     
-                    <!-- Выводы -->
-                    <div class="admin-content" id="adminWithdraws">
-                        <!-- Динамически заполняется из JS -->
-                    </div>
-                    
-                    <!-- Чеки -->
-                    <div class="admin-content" id="adminReceipts" style="display: none;">
-                        <!-- Динамически заполняется из JS -->
-                    </div>
-                    
-                    <!-- Пользователи -->
-                    <div class="admin-content" id="adminUsers" style="display: none;">
-                        <!-- Динамически заполняется из JS -->
-                    </div>
-                    
-                    <!-- Настройки -->
-                    <div class="admin-content" id="adminSettings" style="display: none;">
-                        <!-- Динамически заполняется из JS -->
-                    </div>
+                    <div class="admin-content" id="adminWithdraws"></div>
+                    <div class="admin-content" id="adminReceipts" style="display: none;"></div>
+                    <div class="admin-content" id="adminUsers" style="display: none;"></div>
+                    <div class="admin-content" id="adminSettings" style="display: none;"></div>
                 </div>
             </div>
         </div>
@@ -1180,12 +1144,8 @@
                     <button class="close-btn">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <div id="wordleGame">
-                        <!-- Сетка создается через JS -->
-                    </div>
-                    <div class="wordle-keyboard" id="wordleKeyboard">
-                        <!-- Клавиатура создается через JS -->
-                    </div>
+                    <div id="wordleGame"></div>
+                    <div class="wordle-keyboard" id="wordleKeyboard"></div>
                     <div class="wordle-info" id="wordleInfo"></div>
                 </div>
             </div>
@@ -1220,10 +1180,6 @@
                     </div>
                     
                     <button class="btn-primary" id="uploadReceiptBtn" disabled>Отправить на проверку</button>
-                    
-                    <p class="hint" style="margin-top: 16px;">
-                        За одобренный чек: <strong>0.75 ₽</strong> (может быть изменено)
-                    </p>
                 </div>
             </div>
         </div>
@@ -1253,177 +1209,163 @@
                     </div>
                     
                     <p class="hint">
-                        💡 Распространяйте ссылку везде! В комментариях TT, говорите что там слив. 
-                        Обновление статистики каждые 24-48 часов.
+                        💡 Распространяйте ссылку везде! В комментариях TT, говорите что там слив.
                     </p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Скрипты -->
     <script>
-        // Конфигурация
+        // Конфигурация - только URL таблицы
         const CONFIG = {
             API_URL: 'https://script.google.com/macros/s/AKfycbxRMcBowZJ0-thf2L_VWuAodFC1RZXdgjyrGv47Jt4_lxcMOkf72sVfE8o74lEWbtQK3A/exec',
             TG_BOT: '@WorkBtheB_bot',
-            TG_BOT_LINK: 'https://t.me/WorkBtheB_bot',
-            ADS_LINK: 'https://bthebfr.github.io/about/',
-            TIMEZONE: 'Asia/Yekaterinburg'
+            ADS_LINK: 'https://bthebfr.github.io/about/'
         };
 
-        // API класс
-        class API {
+        // Класс для работы с API
+        class WorkAPI {
             constructor() {
                 this.baseUrl = CONFIG.API_URL;
             }
 
-            async request(action, params = {}) {
+            // Универсальный метод запроса
+            async request(action, data = {}) {
                 try {
-                    const requestParams = { ...params, action };
+                    // Добавляем action к данным
                     const formData = new FormData();
+                    formData.append('action', action);
                     
-                    Object.keys(requestParams).forEach(key => {
-                        formData.append(key, requestParams[key]);
+                    Object.keys(data).forEach(key => {
+                        if (data[key] !== undefined && data[key] !== null) {
+                            formData.append(key, data[key]);
+                        }
                     });
 
+                    // Отправляем запрос
                     const response = await fetch(this.baseUrl, {
                         method: 'POST',
-                        mode: 'no-cors',
                         body: formData
                     });
 
-                    // Из-за no-cors возвращаем заглушку
-                    return { success: true };
+                    // Парсим ответ
+                    const text = await response.text();
+                    try {
+                        return JSON.parse(text);
+                    } catch {
+                        return { success: false, error: 'Ошибка парсинга ответа' };
+                    }
                     
                 } catch (error) {
                     console.error('API Error:', error);
-                    return { success: false, error: error.message };
+                    return { success: false, error: 'Ошибка соединения' };
                 }
             }
 
+            // Проверка токена
             async checkToken(token) {
                 return this.request('checkToken', { token });
             }
 
+            // Вход
             async login(token) {
                 return this.request('login', { token });
             }
 
+            // Сохранение реквизитов
             async saveRequisites(token, phone, card, steam) {
                 return this.request('saveRequisites', { token, phone, card, steam });
             }
 
+            // Получение данных пользователя
             async getUserData(token) {
                 return this.request('getUserData', { token });
             }
 
-            async checkWordle(token) {
-                return this.request('checkWordle', { token });
-            }
-
-            async submitWordle(token, guesses) {
-                return this.request('submitWordle', { token, guesses: JSON.stringify(guesses) });
-            }
-
-            async uploadReceipt(token, store, photoUrl, receiptDate) {
-                return this.request('uploadReceipt', { token, store, photoUrl, receiptDate });
-            }
-
-            async withdraw(token, amount, requisiteType, secretCode) {
-                return this.request('withdraw', { token, amount, requisiteType, secretCode });
-            }
-
+            // Получение истории
             async getHistory(token) {
                 return this.request('getHistory', { token });
             }
 
+            // Админ: получить ожидающие выводы
             async adminGetPending(token) {
                 return this.request('adminGetPending', { token });
             }
 
+            // Админ: одобрить вывод
             async adminApproveWithdraw(token, withdrawId) {
                 return this.request('adminApproveWithdraw', { token, withdrawId });
             }
 
+            // Админ: отклонить вывод
             async adminRejectWithdraw(token, withdrawId, reason) {
                 return this.request('adminRejectWithdraw', { token, withdrawId, reason });
             }
 
+            // Админ: одобрить чек
             async adminApproveReceipt(token, receiptId, amount) {
                 return this.request('adminApproveReceipt', { token, receiptId, amount });
             }
 
+            // Админ: отклонить чек
             async adminRejectReceipt(token, receiptId, reason) {
                 return this.request('adminRejectReceipt', { token, receiptId, reason });
             }
 
+            // Админ: штраф
             async adminFineReceipt(token, receiptId) {
                 return this.request('adminFineReceipt', { token, receiptId });
-            }
-
-            async getSettings() {
-                return this.request('getSettings', {});
             }
         }
 
         // Основное приложение
-        class App {
+        class WorkApp {
             constructor() {
-                this.api = new API();
+                this.api = new WorkAPI();
                 this.user = null;
+                this.cache = this.loadCache();
                 this.activeModal = null;
-                this.cache = this.loadFromCache();
                 
                 this.init();
             }
 
-            loadFromCache() {
+            loadCache() {
                 try {
-                    return JSON.parse(localStorage.getItem('appCache')) || {
+                    return JSON.parse(localStorage.getItem('workCache')) || {
                         userData: null,
-                        history: [],
-                        lastUpdate: null
+                        history: []
                     };
                 } catch {
-                    return {
-                        userData: null,
-                        history: [],
-                        lastUpdate: null
-                    };
+                    return { userData: null, history: [] };
                 }
             }
 
-            saveToCache() {
-                localStorage.setItem('appCache', JSON.stringify(this.cache));
+            saveCache() {
+                localStorage.setItem('workCache', JSON.stringify(this.cache));
             }
 
             async init() {
                 this.showLoading();
                 this.initEventListeners();
-                
-                const savedToken = localStorage.getItem('userToken');
+
+                // Проверяем сохраненный токен
+                const savedToken = localStorage.getItem('workToken');
                 
                 if (savedToken) {
-                    // Заглушка для демо
-                    this.user = {
-                        token: savedToken,
-                        name: 'Данил Гилев',
-                        balance: 150.50,
-                        phone: '+7 (999) 123-45-67',
-                        card: '2200 1234 5678 9012',
-                        steam: 'daniil_steam',
-                        streak: 3,
-                        is_admin: savedToken === 'ADMIN88',
-                        clicks: 45,
-                        referral_earned: 22.50
-                    };
+                    // Пытаемся войти
+                    const result = await this.api.login(savedToken);
                     
-                    this.cache.userData = this.user;
-                    this.saveToCache();
-                    
-                    this.showMainScreen();
-                    this.checkUrlAndOpenModal();
+                    if (result.success && result.user) {
+                        this.user = result.user;
+                        this.cache.userData = result.user;
+                        this.saveCache();
+                        this.showMainScreen();
+                        this.checkUrlAndOpenModal();
+                    } else {
+                        localStorage.removeItem('workToken');
+                        this.showAuthScreen();
+                    }
                 } else {
                     this.showAuthScreen();
                 }
@@ -1446,16 +1388,26 @@
                 document.getElementById('authScreen').style.display = 'none';
                 document.getElementById('mainScreen').style.display = 'block';
                 
+                // Показываем баланс
+                document.getElementById('userBalance').textContent = 
+                    (this.user?.balance || 0).toFixed(2);
+                
+                // Показываем админ кнопку если нужно
                 if (this.user?.is_admin) {
                     document.getElementById('adminBtn').style.display = 'inline-block';
                 }
-                
-                document.getElementById('userBalance').textContent = this.user.balance.toFixed(2);
+            }
+
+            showError(message) {
+                const errorEl = document.getElementById('errorMessage');
+                errorEl.textContent = message;
+                setTimeout(() => {
+                    errorEl.textContent = '';
+                }, 3000);
             }
 
             checkUrlAndOpenModal() {
                 const hash = window.location.hash.substring(1);
-                
                 setTimeout(() => {
                     switch(hash) {
                         case 'profile': this.showProfile(); break;
@@ -1476,6 +1428,7 @@
                     document.getElementById('registerTab').classList.remove('active');
                     document.getElementById('loginForm').style.display = 'block';
                     document.getElementById('registerForm').style.display = 'none';
+                    document.getElementById('requisitesForm').style.display = 'none';
                 });
 
                 document.getElementById('registerTab').addEventListener('click', () => {
@@ -1483,47 +1436,91 @@
                     document.getElementById('loginTab').classList.remove('active');
                     document.getElementById('loginForm').style.display = 'none';
                     document.getElementById('registerForm').style.display = 'block';
+                    document.getElementById('requisitesForm').style.display = 'none';
                 });
 
                 // Вход
-                document.getElementById('loginBtn').addEventListener('click', () => {
-                    const token = document.getElementById('loginToken').value;
+                document.getElementById('loginBtn').addEventListener('click', async () => {
+                    const token = document.getElementById('loginToken').value.trim();
+                    
                     if (!token) {
                         this.showError('Введите токен');
                         return;
                     }
+
+                    const result = await this.api.login(token);
                     
-                    // Демо-вход
-                    localStorage.setItem('userToken', token);
-                    window.location.reload();
+                    if (result.success && result.user) {
+                        this.user = result.user;
+                        localStorage.setItem('workToken', token);
+                        this.cache.userData = result.user;
+                        this.saveCache();
+                        this.showMainScreen();
+                    } else {
+                        this.showError('Неверный токен или пользователь не найден');
+                    }
                 });
 
                 // Проверка токена при регистрации
-                document.getElementById('checkTokenBtn').addEventListener('click', () => {
-                    const token = document.getElementById('registerToken').value;
+                document.getElementById('checkTokenBtn').addEventListener('click', async () => {
+                    const token = document.getElementById('registerToken').value.trim();
+                    
                     if (!token) {
                         this.showError('Введите токен');
                         return;
                     }
+
+                    const result = await this.api.checkToken(token);
                     
-                    document.getElementById('requisitesForm').style.display = 'block';
-                    document.getElementById('registerToken').disabled = true;
+                    if (result.success && result.exists) {
+                        if (result.registered) {
+                            this.showError('Этот токен уже зарегистрирован');
+                        } else {
+                            // Токен есть, но не зарегистрирован - показываем форму реквизитов
+                            document.getElementById('requisitesForm').style.display = 'block';
+                            document.getElementById('registerToken').disabled = true;
+                            document.getElementById('checkTokenBtn').disabled = true;
+                            
+                            // Сохраняем токен для регистрации
+                            this.registerToken = token;
+                        }
+                    } else {
+                        this.showError('Токен не найден в таблице');
+                    }
                 });
 
                 // Завершение регистрации
-                document.getElementById('completeRegistrationBtn').addEventListener('click', () => {
-                    const token = document.getElementById('registerToken').value;
-                    const phone = document.getElementById('regPhone').value;
-                    const card = document.getElementById('regCard').value;
-                    const steam = document.getElementById('regSteam').value;
+                document.getElementById('completeRegistrationBtn').addEventListener('click', async () => {
+                    const phone = document.getElementById('regPhone').value.trim();
+                    const card = document.getElementById('regCard').value.trim();
+                    const steam = document.getElementById('regSteam').value.trim();
                     
                     if (!phone && !card && !steam) {
                         this.showError('Введите хотя бы один реквизит');
                         return;
                     }
+
+                    const result = await this.api.saveRequisites(
+                        this.registerToken, 
+                        phone, 
+                        card, 
+                        steam
+                    );
                     
-                    localStorage.setItem('userToken', token);
-                    window.location.reload();
+                    if (result.success) {
+                        // Входим после регистрации
+                        const loginResult = await this.api.login(this.registerToken);
+                        
+                        if (loginResult.success && loginResult.user) {
+                            this.user = loginResult.user;
+                            localStorage.setItem('workToken', this.registerToken);
+                            this.cache.userData = loginResult.user;
+                            this.saveCache();
+                            this.showMainScreen();
+                        }
+                    } else {
+                        this.showError('Ошибка при сохранении');
+                    }
                 });
 
                 // Навигация
@@ -1531,36 +1528,36 @@
                     window.location.hash = 'profile';
                     this.showProfile();
                 });
-                
+
                 document.getElementById('withdrawBtn').addEventListener('click', () => {
                     window.location.hash = 'withdraw';
                     this.showWithdraw();
                 });
-                
+
                 document.getElementById('historyBtn').addEventListener('click', () => {
                     window.location.hash = 'history';
                     this.showHistory();
                 });
-                
+
                 document.getElementById('adminBtn').addEventListener('click', () => {
                     window.location.hash = 'admin';
                     this.showAdmin();
                 });
-                
+
                 document.getElementById('adsBtn').addEventListener('click', () => {
                     window.open(CONFIG.ADS_LINK, '_blank');
                 });
-                
+
                 document.getElementById('wordleBtn').addEventListener('click', () => {
                     window.location.hash = 'wordle';
                     this.showWordle();
                 });
-                
+
                 document.getElementById('receiptBtn').addEventListener('click', () => {
                     window.location.hash = 'receipt';
                     this.showReceipt();
                 });
-                
+
                 document.getElementById('linksBtn').addEventListener('click', () => {
                     window.location.hash = 'links';
                     this.showLinks();
@@ -1593,6 +1590,14 @@
                     tokenSpan.textContent = this.user.token;
                 });
 
+                // Копирование ссылки
+                document.getElementById('copyLink').addEventListener('click', () => {
+                    const linkInput = document.getElementById('userLink');
+                    linkInput.select();
+                    document.execCommand('copy');
+                    alert('Ссылка скопирована!');
+                });
+
                 // Загрузка чека
                 const dropArea = document.getElementById('dropArea');
                 const fileInput = document.getElementById('receiptFile');
@@ -1611,9 +1616,8 @@
                 dropArea.addEventListener('drop', (e) => {
                     e.preventDefault();
                     dropArea.style.background = 'rgba(124, 58, 237, 0.03)';
-                    const files = e.dataTransfer.files;
-                    if (files.length > 0) {
-                        this.handleReceiptFile(files[0]);
+                    if (e.dataTransfer.files.length > 0) {
+                        this.handleReceiptFile(e.dataTransfer.files[0]);
                     }
                 });
                 
@@ -1627,14 +1631,6 @@
                     this.uploadReceipt();
                 });
 
-                // Копирование ссылки
-                document.getElementById('copyLink').addEventListener('click', () => {
-                    const linkInput = document.getElementById('userLink');
-                    linkInput.select();
-                    document.execCommand('copy');
-                    alert('Ссылка скопирована!');
-                });
-
                 // Вывод средств
                 document.getElementById('withdrawSubmit').addEventListener('click', () => {
                     this.submitWithdraw();
@@ -1646,17 +1642,14 @@
                         document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
                         tab.classList.add('active');
                         
-                        document.querySelectorAll('.admin-content').forEach(c => c.style.display = 'none');
+                        const contents = ['withdraws', 'receipts', 'users', 'settings'];
+                        contents.forEach(c => {
+                            document.getElementById(`admin${c.charAt(0).toUpperCase() + c.slice(1)}`).style.display = 'none';
+                        });
+                        
                         document.getElementById(`admin${tab.dataset.tab.charAt(0).toUpperCase() + tab.dataset.tab.slice(1)}`).style.display = 'block';
                     });
                 });
-            }
-
-            showError(message) {
-                document.getElementById('errorMessage').textContent = message;
-                setTimeout(() => {
-                    document.getElementById('errorMessage').textContent = '';
-                }, 3000);
             }
 
             handleReceiptFile(file) {
@@ -1687,10 +1680,25 @@
                     alert('Выберите дату чека');
                     return;
                 }
+
+                // Здесь нужно реально загрузить фото и получить URL
+                // Пока используем заглушку
+                const photoUrl = 'https://t.me/temp_photo';
                 
-                alert('Чек отправлен на проверку!');
-                document.getElementById('receiptModal').style.display = 'none';
-                window.location.hash = '';
+                const result = await this.api.uploadReceipt(
+                    this.user.token, 
+                    store, 
+                    photoUrl, 
+                    date
+                );
+                
+                if (result.success) {
+                    alert('Чек отправлен на проверку!');
+                    document.getElementById('receiptModal').style.display = 'none';
+                    window.location.hash = '';
+                } else {
+                    alert('Ошибка при загрузке чека');
+                }
             }
 
             async submitWithdraw() {
@@ -1712,29 +1720,76 @@
                     alert('Введите секретный код');
                     return;
                 }
+
+                const result = await this.api.withdraw(
+                    this.user.token,
+                    amount,
+                    type,
+                    secret
+                );
                 
-                alert('Заявка на вывод создана!');
-                document.getElementById('withdrawModal').style.display = 'none';
-                window.location.hash = '';
+                if (result.success) {
+                    alert('Заявка на вывод создана!');
+                    document.getElementById('withdrawModal').style.display = 'none';
+                    window.location.hash = '';
+                    
+                    // Обновляем данные
+                    const userResult = await this.api.getUserData(this.user.token);
+                    if (userResult.success && userResult.user) {
+                        this.user = userResult.user;
+                        this.cache.userData = userResult.user;
+                        this.saveCache();
+                        document.getElementById('userBalance').textContent = 
+                            (this.user.balance || 0).toFixed(2);
+                    }
+                } else {
+                    alert(result.error || 'Ошибка при создании заявки');
+                }
             }
 
-            // Методы показа модалок
-            showProfile() {
+            async showProfile() {
                 if (this.activeModal) this.activeModal.style.display = 'none';
                 
                 const modal = document.getElementById('profileModal');
                 
-                document.getElementById('profileName').textContent = this.user.name;
-                document.getElementById('profilePhone').textContent = this.user.phone || '—';
-                document.getElementById('profileCard').textContent = this.user.card || '—';
-                document.getElementById('profileSteam').textContent = this.user.steam || '—';
-                document.getElementById('profileStreak').textContent = this.user.streak || 0;
+                // Показываем кешированные данные
+                if (this.cache.userData) {
+                    document.getElementById('profileName').textContent = 
+                        this.cache.userData.name || '—';
+                    document.getElementById('profilePhone').textContent = 
+                        this.cache.userData.phone || '—';
+                    document.getElementById('profileCard').textContent = 
+                        this.cache.userData.card || '—';
+                    document.getElementById('profileSteam').textContent = 
+                        this.cache.userData.steam || '—';
+                    document.getElementById('profileStreak').textContent = 
+                        this.cache.userData.streak || 0;
+                }
                 
                 modal.style.display = 'flex';
                 this.activeModal = modal;
+                
+                // Обновляем в фоне
+                const result = await this.api.getUserData(this.user.token);
+                if (result.success && result.user) {
+                    this.user = result.user;
+                    this.cache.userData = result.user;
+                    this.saveCache();
+                    
+                    document.getElementById('profileName').textContent = 
+                        this.user.name || '—';
+                    document.getElementById('profilePhone').textContent = 
+                        this.user.phone || '—';
+                    document.getElementById('profileCard').textContent = 
+                        this.user.card || '—';
+                    document.getElementById('profileSteam').textContent = 
+                        this.user.steam || '—';
+                    document.getElementById('profileStreak').textContent = 
+                        this.user.streak || 0;
+                }
             }
 
-            showWithdraw() {
+            async showWithdraw() {
                 if (this.activeModal) this.activeModal.style.display = 'none';
                 
                 const modal = document.getElementById('withdrawModal');
@@ -1742,13 +1797,14 @@
                 
                 selector.innerHTML = '';
                 
-                if (this.user.phone) {
+                // Показываем доступные реквизиты из кеша
+                if (this.cache.userData?.phone) {
                     selector.innerHTML += `<div class="requisite-option" data-type="phone">📱 Телефон</div>`;
                 }
-                if (this.user.card) {
+                if (this.cache.userData?.card) {
                     selector.innerHTML += `<div class="requisite-option" data-type="card">💳 Карта</div>`;
                 }
-                if (this.user.steam) {
+                if (this.cache.userData?.steam) {
                     selector.innerHTML += `<div class="requisite-option" data-type="steam">🎮 Steam</div>`;
                 }
                 
@@ -1763,131 +1819,130 @@
                 this.activeModal = modal;
             }
 
-            showHistory() {
+            async showHistory() {
                 if (this.activeModal) this.activeModal.style.display = 'none';
                 
                 const modal = document.getElementById('historyModal');
                 const list = document.getElementById('historyList');
                 
-                // Демо-история
-                list.innerHTML = `
-                    <div class="history-item">
-                        <div class="history-info">
-                            <h4>Wordle</h4>
-                            <p>01.03.2026 14:30</p>
-                            <span class="history-status status-completed">Выполнено</span>
-                        </div>
-                        <div class="history-amount positive">+0.20 ₽</div>
-                    </div>
-                    <div class="history-item">
-                        <div class="history-info">
-                            <h4>Чек (Магнит)</h4>
-                            <p>01.03.2026 10:15</p>
-                            <span class="history-status status-pending">В обработке</span>
-                        </div>
-                        <div class="history-amount">0 ₽</div>
-                    </div>
-                    <div class="history-item">
-                        <div class="history-info">
-                            <h4>Вывод</h4>
-                            <p>28.02.2026 16:40</p>
-                            <span class="history-status status-completed">Выполнено</span>
-                        </div>
-                        <div class="history-amount negative">-50.00 ₽</div>
-                    </div>
-                `;
-                
+                list.innerHTML = '<div style="text-align: center; color: #a0a0a0; padding: 40px;">Загрузка...</div>';
                 modal.style.display = 'flex';
                 this.activeModal = modal;
+                
+                // Загружаем реальную историю
+                const result = await this.api.getHistory(this.user.token);
+                
+                if (result.success && result.history) {
+                    this.cache.history = result.history;
+                    this.saveCache();
+                    
+                    list.innerHTML = '';
+                    
+                    if (result.history.length === 0) {
+                        list.innerHTML = '<div style="text-align: center; color: #a0a0a0; padding: 40px;">История пуста</div>';
+                        return;
+                    }
+                    
+                    result.history.forEach(item => {
+                        const amountClass = item.amount > 0 ? 'positive' : (item.amount < 0 ? 'negative' : '');
+                        const statusClass = `status-${item.status}`;
+                        
+                        list.innerHTML += `
+                            <div class="history-item">
+                                <div class="history-info">
+                                    <h4>${item.action}</h4>
+                                    <p>${item.date}</p>
+                                    <span class="history-status ${statusClass}">${item.status}</span>
+                                </div>
+                                <div class="history-amount ${amountClass}">
+                                    ${item.amount > 0 ? '+' : ''}${item.amount} ₽
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
             }
 
-            showAdmin() {
+            async showAdmin() {
                 if (!this.user?.is_admin) return;
                 if (this.activeModal) this.activeModal.style.display = 'none';
                 
                 const modal = document.getElementById('adminModal');
-                const withdrawsDiv = document.getElementById('adminWithdraws');
-                
-                // Демо-заявки
-                withdrawsDiv.innerHTML = `
-                    <div class="admin-item">
-                        <div class="admin-item-header">
-                            <span class="admin-item-id">Заявка #1</span>
-                            <span class="admin-item-status">Ожидание</span>
-                        </div>
-                        <div class="admin-item-body">
-                            <p>👤 Токен: 19Г239Г</p>
-                            <p>💰 Сумма: 50.00 ₽</p>
-                            <p>💳 Реквизит: Карта 2200...9012</p>
-                            <p>📅 01.03.2026 14:30</p>
-                        </div>
-                        <div class="admin-item-actions">
-                            <button class="admin-btn approve">✅ Одобрить</button>
-                            <button class="admin-btn reject">❌ Отклонить</button>
-                        </div>
-                    </div>
-                    <div class="admin-item">
-                        <div class="admin-item-header">
-                            <span class="admin-item-id">Заявка #2</span>
-                            <span class="admin-item-status">Ожидание</span>
-                        </div>
-                        <div class="admin-item-body">
-                            <p>👤 Токен: 45А678Б</p>
-                            <p>💰 Сумма: 20.00 ₽</p>
-                            <p>📱 Реквизит: Телефон +7 (999) 111-22-33</p>
-                            <p>📅 01.03.2026 09:15</p>
-                        </div>
-                        <div class="admin-item-actions">
-                            <button class="admin-btn approve">✅ Одобрить</button>
-                            <button class="admin-btn reject">❌ Отклонить</button>
-                        </div>
-                    </div>
-                `;
-                
                 modal.style.display = 'flex';
                 this.activeModal = modal;
+                
+                // Загружаем ожидающие выводы
+                const result = await this.api.adminGetPending(this.user.token);
+                
+                if (result.success && result.withdraws) {
+                    const withdrawsDiv = document.getElementById('adminWithdraws');
+                    withdrawsDiv.innerHTML = '';
+                    
+                    if (result.withdraws.length === 0) {
+                        withdrawsDiv.innerHTML = '<div style="text-align: center; color: #a0a0a0; padding: 20px;">Нет ожидающих выводов</div>';
+                        return;
+                    }
+                    
+                    result.withdraws.forEach(w => {
+                        const div = document.createElement('div');
+                        div.className = 'admin-item';
+                        div.innerHTML = `
+                            <div class="admin-item-header">
+                                <span class="admin-item-id">Заявка #${w.id}</span>
+                                <span class="admin-item-status">${w.status}</span>
+                            </div>
+                            <div class="admin-item-body">
+                                <p>👤 Токен: ${w.token}</p>
+                                <p>💰 Сумма: ${w.amount} ₽</p>
+                                <p>💳 Реквизит: ${w.requisiteType} - ${w.requisite}</p>
+                                <p>📅 ${w.requestDate}</p>
+                            </div>
+                            <div class="admin-item-actions">
+                                <button class="admin-btn approve" data-id="${w.id}">✅ Одобрить</button>
+                                <button class="admin-btn reject" data-id="${w.id}">❌ Отклонить</button>
+                            </div>
+                        `;
+                        
+                        withdrawsDiv.appendChild(div);
+                    });
+                    
+                    // Добавляем обработчики
+                    document.querySelectorAll('.admin-btn.approve').forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const id = btn.dataset.id;
+                            const result = await this.api.adminApproveWithdraw(this.user.token, id);
+                            if (result.success) {
+                                alert('Вывод одобрен');
+                                this.showAdmin(); // Обновляем
+                            }
+                        });
+                    });
+                    
+                    document.querySelectorAll('.admin-btn.reject').forEach(btn => {
+                        btn.addEventListener('click', async () => {
+                            const id = btn.dataset.id;
+                            const reason = prompt('Причина отклонения:');
+                            if (!reason) return;
+                            
+                            const result = await this.api.adminRejectWithdraw(this.user.token, id, reason);
+                            if (result.success) {
+                                alert('Вывод отклонен');
+                                this.showAdmin(); // Обновляем
+                            }
+                        });
+                    });
+                }
             }
 
             showWordle() {
                 if (this.activeModal) this.activeModal.style.display = 'none';
                 
                 const modal = document.getElementById('wordleModal');
-                const gameDiv = document.getElementById('wordleGame');
-                
-                // Создаем сетку Wordle
-                let gridHTML = '<div class="wordle-grid">';
-                for (let i = 0; i < 6; i++) {
-                    gridHTML += '<div class="wordle-row">';
-                    for (let j = 0; j < 5; j++) {
-                        gridHTML += '<div class="wordle-cell"></div>';
-                    }
-                    gridHTML += '</div>';
-                }
-                gridHTML += '</div>';
-                
-                gameDiv.innerHTML = gridHTML;
-                
-                // Клавиатура
-                const keyboard = document.getElementById('wordleKeyboard');
-                const keys = [
-                    ['Й','Ц','У','К','Е','Н','Г','Ш','Щ','З'],
-                    ['Ф','Ы','В','А','П','Р','О','Л','Д','Ж'],
-                    ['Enter','Я','Ч','С','М','И','Т','Ь','Б','Ю','←']
-                ];
-                
-                let keyboardHTML = '';
-                keys.forEach(row => {
-                    row.forEach(key => {
-                        keyboardHTML += `<button class="wordle-key">${key}</button>`;
-                    });
-                });
-                
-                keyboard.innerHTML = keyboardHTML;
-                
-                document.getElementById('wordleInfo').innerHTML = 'Стрик: 3 дня • База: 0.15 ₽ • Бонус: +0.05 ₽';
-                
                 modal.style.display = 'flex';
                 this.activeModal = modal;
+                
+                // Здесь будет логика Wordle
+                document.getElementById('wordleGame').innerHTML = '<div style="text-align: center; padding: 40px;">Wordle скоро будет доступен</div>';
             }
 
             showReceipt() {
@@ -1918,7 +1973,7 @@
 
         // Запуск
         document.addEventListener('DOMContentLoaded', () => {
-            window.app = new App();
+            window.app = new WorkApp();
         });
     </script>
 </body>
